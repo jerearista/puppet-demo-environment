@@ -1,0 +1,47 @@
+---
+classes:
+  - eos_config::vlans
+  - eos_config::interfaces
+  - eos_config::l3interfaces
+  - eos_config::switchports
+  - eos_config::portchannels
+  - eos_config::snmp
+
+vlans:
+  1: { vlan_name: default }
+  2: { vlan_name: TestVlan_2 }
+
+eos_config::vlans::purge: false
+
+interfaces:
+  Management1: { description: 'enabled by Puppet', enable: true }
+  Ethernet2: { description: 'Shutdown by Puppet', enable: false }
+  Port-Channel34: { description: 'Made by Puppet', enable: false }
+
+l3interfaces:
+  Ethernet1: { address: '172.16.130.101/24' }
+  #Ethernet1: { address: '172.16.130.101/24',
+  #  helper_addresses: ['10.0.2.2', '10.0.3.2'] }
+  #Management1: { address: '192.168.0.2/24', mtu: '1500' }
+
+#eos_config::switchports::access: ['Ethernet1', 'Ethernet2']
+#eos_config::switchports::trunk: ['Ethernet3', 'Port-Channel34']
+eos_config::switchports::access: ['Ethernet2']
+eos_config::switchports::trunk: ['Port-Channel34']
+
+portchannels:
+  Port-Channel1:
+    members: ['Ethernet3', 'Ethernet4']
+    lacp_mode: active
+    minimum_links: 2
+
+snmp:
+  settings:
+    contact: 'Fezig'
+    location: 'The cliffs of insanity'
+
+communities:
+  public: {group: ro}
+  private: {group: rw}
+  devops: {group: rw}
+
