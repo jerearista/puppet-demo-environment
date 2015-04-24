@@ -1,3 +1,6 @@
 [submodule "modules/eos_config"]
 	path = modules/eos_config
 	url = https://github.com/jerearista/puppet-eos_config-demo.git
+[submodule "modules/eos"]
+	path = modules/eos
+	url = https://github.com/arista-eosplus/puppet-eos.git
