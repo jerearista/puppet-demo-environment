@@ -39,7 +39,7 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  notify { 'env: demo - site.pp  ***default***': }
+  #notify { "env: ${::environment} - site.pp  ***default***": }
 
   #
   # Use hiera for classification
