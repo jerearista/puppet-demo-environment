@@ -35,14 +35,19 @@ File { backup => 'demo' }
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-node default {
-  # This is where you can declare classes for all nodes.
-  # Example:
-  #   class { 'my_class': }
-  #notify { "env: ${::environment} - site.pp  ***default***": }
-
+node /^veos\d+$/ {
   #
   # Use hiera for classification
   #
   hiera_include('classes')
+}
+
+node default {
+  # This is where you can declare classes for all nodes.
+  # Example:
+  #   class { 'my_class': }
+  #   include my_class
+
+  notify { "Node ${::fqdn} is unclassified in ${::environment}/manifests/site.pp - ***default***": }
+
 }

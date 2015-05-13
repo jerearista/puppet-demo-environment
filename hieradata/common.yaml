@@ -1,17 +1,28 @@
 ---
 message: "This node is using common data"
 
-#classes:
+classes:
+  - eos_config::common
 #  - notify
 #  - eos_ntp_server
 #  - local
 #eos_ntp_server::name: 10.68.49.204
 #eos_ntp_server::ensure: present
 
+eos_config::common::motd: |
+   
+  -----------------
+  Managed by puppet
+  -----------------
+   
+   
+# End of MOTD string
+
 ntp::enable: true
 ntp::servers:
   - 10.68.49.204
   - 10.68.49.253
+
 #rbeapi::conf::username: eapi
 #rbeapi::conf::password: icanttellyou
 
