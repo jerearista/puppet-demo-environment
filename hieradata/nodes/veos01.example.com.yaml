@@ -19,7 +19,6 @@ interfaces:
   Port-Channel34: { description: 'Made by Puppet', enable: false }
 
 l3interfaces:
-  Ethernet1: { address: '172.16.130.101/24' }
   #Ethernet1: { address: '172.16.130.101/24',
   #  helper_addresses: ['10.0.2.2', '10.0.3.2'] }
   #Management1: { address: '192.168.0.2/24', mtu: '1500' }
