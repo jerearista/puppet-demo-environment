@@ -18,7 +18,6 @@
 
 # Define filebucket 'main':
 filebucket { 'demo':
-  #server => 'jere-puppet-1.nh.arista.com',
   server => 'puppet',
   path   => false,
 }
