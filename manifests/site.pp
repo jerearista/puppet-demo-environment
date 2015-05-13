@@ -35,6 +35,46 @@ File { backup => 'demo' }
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
+################################################################################
+# Example:
+#
+#   Classifying based on a regex over the hostname:
+# https://docs.puppetlabs.com/puppet/latest/reference/lang_node_definitions.html
+#
+
+node /\-dc01\-spine\d/ {
+  # Datacenter 01 - Spine nodes
+  $application_tier = "prod"
+  hiera_include('classes')
+}
+
+node /\-dc01\-rack03\-tor\d/ {
+  # Datacenter 01 - ToR nodes in rack 03
+  $application_tier = "stage"
+  hiera_include('classes')
+}
+
+node /\-dc01\-rack04\-tor\d/ {
+  # Datacenter 01 - ToR nodes in rack 04
+  $application_tier = "dev"
+  hiera_include('classes')
+}
+
+node /\-dc01\-.*\-tor\d/ {
+  # Datacenter 01 - ToR nodes (except racks 03-04 caught above)
+  $application_tier = "prod"
+  hiera_include('classes')
+}
+
+node /\-dc01\-/ {
+  # Datacenter 01 - all-other nodes
+  $application_tier = "prod"
+  hiera_include('classes')
+}
+
+#
+################################################################################
+
 node /^veos\d+$/ {
   #
   # Use hiera for classification
