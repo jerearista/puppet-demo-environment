@@ -10,11 +10,11 @@ classes:
 #eos_ntp_server::ensure: present
 
 eos_config::common::motd: |
-   
+  
   -----------------
   Managed by puppet
   -----------------
-   
+  
    
 # End of MOTD string
 
